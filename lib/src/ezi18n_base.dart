@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'errors/not_found_in_context.dart';
@@ -9,7 +10,7 @@ class EzI18n {
 
   EzI18n(this.locale, this.localizedStrings);
 
-  /// Função para obter a string localizada com suporte a parâmetros usando `@{paramKey}`.
+  /// Function to get the localized string with support for parameters using `@{paramKey}`.
   String tr(String key, {Map<String, dynamic>? params}) {
     String translation = localizedStrings[key] ?? key;
 
@@ -20,7 +21,7 @@ class EzI18n {
       );
     }
 
-    // Expressão regular para corresponder a placeholders no formato @{paramKey}
+    // Regular expression to match placeholders in the format @{paramKey}
     final parameterRegExp = RegExp(r'@\{([^}]+)\}');
 
     translation = translation.replaceAllMapped(parameterRegExp, (match) {
@@ -34,7 +35,7 @@ class EzI18n {
           'Missing parameter "@{$placeholder}" for key "$key".',
           name: 'EzI18n',
         );
-        // Decide se mantém o placeholder ou substitui por uma string vazia
+        // Decide whether to keep the placeholder or replace it with an empty string
         return '';
       }
     });
@@ -42,7 +43,7 @@ class EzI18n {
     return translation;
   }
 
-  /// Método estático para acessar EzI18n a partir do contexto.
+  /// Static method to access EzI18n from the context.
   static EzI18n of(BuildContext context) {
     final ezi18n = Localizations.of<EzI18n>(context, EzI18n);
     if (ezi18n == null) {

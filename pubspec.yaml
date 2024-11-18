@@ -1,5 +1,5 @@
 name: ezi18n
-description: A simple internationalization package for Flutter.
+description: A simple internationalization package.
 version: 0.0.1
 
 environment:
@@ -8,9 +8,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_test:
+    sdk: flutter
   intl: ^0.19.0
-
-flutter:
-  assets:
-    - assets/i18n/
-
