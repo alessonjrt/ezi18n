@@ -1,0 +1,22 @@
+name: example
+description: Exemplo de uso do seu_pacote.
+
+publish_to: "none" # Impede a publicação acidental do aplicativo de exemplo.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  ezi18n:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
