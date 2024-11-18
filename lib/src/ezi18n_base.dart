@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 
+import 'errors/not_found_in_context.dart';
+
 class EzI18n {
   final Locale locale;
   final Map<String, String> localizedStrings;
@@ -23,7 +25,9 @@ class EzI18n {
 
     translation = translation.replaceAllMapped(parameterRegExp, (match) {
       final placeholder = match.group(1)?.trim();
-      if (placeholder != null && params != null && params.containsKey(placeholder)) {
+      if (placeholder != null &&
+          params != null &&
+          params.containsKey(placeholder)) {
         return params[placeholder]?.toString() ?? '';
       } else {
         log(
@@ -42,7 +46,7 @@ class EzI18n {
   static EzI18n of(BuildContext context) {
     final ezi18n = Localizations.of<EzI18n>(context, EzI18n);
     if (ezi18n == null) {
-      throw Exception('EzI18n not found in context. Ensure EzI18nDelegate is added to localizationsDelegates.');
+      throw EzNotFoundInContext();
     }
     return ezi18n;
   }
