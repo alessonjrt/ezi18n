@@ -1,39 +1,93 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+# EzI18n
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+**EzI18n** is a lightweight internationalization (i18n) library for Flutter. It simplifies managing translations and supports dynamic parameter replacement, making multilingual apps easy to develop.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Support for generic (`pt`) and specific (`pt_BR`) locales.
+- Dynamic parameter replacement (`@{name}`).
+- Fallback mechanism for missing translations.
+- Seamless integration with Flutter's localization framework.
 
-## Getting started
+## Getting Started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+### Installation
 
-## Usage
+Add EzI18n to your `pubspec.yaml`:
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  ezi18n: ^1.0.0
 ```
 
-## Additional information
+Run:
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```bash
+flutter pub get
+```
+
+### Usage
+
+1. **Define translations:**
+
+```dart
+import 'package:ezi18n/ezi18n.dart';
+
+class AppMessages implements EzMessages {
+  @override
+  Map<String, Map<String, String>> get keys => {
+    'en': {'greeting': 'Hello, @{name}!'},
+    'pt': {'greeting': 'Olá, @{name}!'},
+  };
+}
+```
+
+2. **Set up localization in your app:**
+
+```dart
+import 'package:ezi18n/ezi18n.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      localizationsDelegates: [
+        EzI18nDelegate(AppMessages()),
+      ],
+      supportedLocales: [Locale('en'), Locale('pt')],
+      home: MyHomePage(),
+    );
+  }
+}
+```
+
+3. **Use translations:**
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:ezi18n/ezi18n.dart';
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('greeting'.tr(context, params: {'name': 'Alice'}))),
+      body: Center(child: Text('greeting'.tr(context, params: {'name': 'Alice'}))),
+    );
+  }
+}
+```
+
+## Contributions
+
+Contributions are welcome! Feel free to open issues or submit PRs on GitHub.
+
+## License
+
+EzI18n is available under the MIT license.
