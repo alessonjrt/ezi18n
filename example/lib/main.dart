@@ -54,7 +54,8 @@ class _MyAppState extends State<MyApp> {
       locale: _currentLocale,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [
-        EzI18nDelegate(widget.messages),
+        EzI18nDelegate(
+            widget.messages), // Add the EzI18nDelegate, for the custom messages
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

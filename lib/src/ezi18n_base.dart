@@ -21,7 +21,6 @@ class EzI18n {
       );
     }
 
-    // Regular expression to match placeholders in the format @{paramKey}
     final parameterRegExp = RegExp(r'@\{([^}]+)\}');
 
     translation = translation.replaceAllMapped(parameterRegExp, (match) {
@@ -35,8 +34,7 @@ class EzI18n {
           'Missing parameter "@{$placeholder}" for key "$key".',
           name: 'EzI18n',
         );
-        // Decide whether to keep the placeholder or replace it with an empty string
-        return '';
+        return placeholder ?? '';
       }
     });
 

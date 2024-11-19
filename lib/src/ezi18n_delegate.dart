@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:ezi18n/ezi18n.dart';
 import 'package:flutter/material.dart';
 
