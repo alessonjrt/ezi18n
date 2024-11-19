@@ -26,38 +26,50 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Widget _buildLanguageDropdown() {
-    return DropdownButton<Locale>(
-      value: widget.currentLocale,
-      icon: Icon(Icons.language, color: Colors.white),
-      dropdownColor: Colors.blue,
-      underline: Container(),
-      onChanged: (Locale? newLocale) {
-        if (newLocale != null) {
-          widget.onChangeLanguage(newLocale);
-        }
-      },
-      items: widget.supportedLocales
-          .map<DropdownMenuItem<Locale>>((Locale locale) {
-        String languageText;
-        switch (locale.languageCode) {
-          case 'en':
-            languageText = 'English';
-            break;
-          case 'pt':
-            languageText = 'Português';
-            break;
-          default:
-            languageText = locale.languageCode;
-        }
-        return DropdownMenuItem<Locale>(
-          value: locale,
-          child: Text(
-            languageText,
-            style: TextStyle(color: Colors.white),
+  void _showLanguageSelector() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'select_language'.tr(context),
+              ),
+              const SizedBox(height: 16),
+              ListView(
+                shrinkWrap: true,
+                children: widget.supportedLocales.map((locale) {
+                  final isSelected = locale == widget.currentLocale;
+                  return ListTile(
+                    leading: isSelected
+                        ? Icon(Icons.check, color: Colors.blue)
+                        : null,
+                    title: Text(locale.languageCode +
+                        (locale.countryCode != null
+                            ? ' - ${locale.countryCode}'
+                            : '')),
+                    onTap: () {
+                      widget.onChangeLanguage(locale);
+                      Navigator.pop(context);
+                    },
+                  );
+                }).toList(),
+              ),
+            ],
           ),
         );
-      }).toList(),
+      },
+    );
+  }
+
+  Widget _buildLanguageDropdown() {
+    return IconButton(
+      icon: Icon(Icons.language, color: Colors.blue),
+      onPressed: _showLanguageSelector,
     );
   }
 

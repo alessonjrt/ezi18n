@@ -13,6 +13,8 @@ dependencies:
     sdk: flutter
   ezi18n:
     path: ../
+  flutter_localization: ^0.2.2
+  localization: ^2.1.1
 
 dev_dependencies:
   flutter_test:

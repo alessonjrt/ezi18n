@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ezi18n/ezi18n.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +39,8 @@ class EzI18nDelegate extends LocalizationsDelegate<EzI18n> {
   }
 
   String _getLocaleKey(Locale locale) {
-    if (locale.countryCode != null && locale.countryCode!.isNotEmpty) {
+    if (locale.countryCode != null &&
+        (locale.countryCode != null && locale.countryCode!.isNotEmpty)) {
       return '${locale.languageCode}_${locale.countryCode}';
     }
     return locale.languageCode;

@@ -1,7 +1,7 @@
-// lib/main.dart
 import 'package:example/messages.dart';
 import 'package:ezi18n/ezi18n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'home_page.dart';
 
@@ -9,8 +9,9 @@ void main() {
   runApp(MyApp(
     messages: AppMessages(),
     supportedLocales: [
-      Locale('en', ''),
-      Locale('pt', ''),
+      Locale('en'),
+      Locale('pt'),
+      Locale('pt', 'BR'),
     ],
     locale: Locale('pt', 'BR'),
   ));
@@ -33,7 +34,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _currentLocale;
 
-  _MyAppState() : _currentLocale = Locale('en', '');
+  _MyAppState() : _currentLocale = Locale('en');
 
   @override
   void initState() {
@@ -51,8 +52,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       locale: _currentLocale,
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: [
         EzI18nDelegate(widget.messages),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: widget.supportedLocales,
       home: MyHomePage(
