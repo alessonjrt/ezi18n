@@ -57,8 +57,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: Locale('en'),
       localizationsDelegates: [
         EzI18nDelegate(AppMessages()),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [Locale('en'), Locale('pt')],
       home: MyHomePage(),
