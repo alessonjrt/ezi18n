@@ -1,18 +1,18 @@
 
-# EzI18n
+# EzI18n 🌍✨
 
-**EzI18n** is a lightweight internationalization (i18n) library for Flutter. It simplifies managing translations and supports dynamic parameter replacement, making multilingual apps easy to develop.
+**EzI18n** is a lightweight internationalization (i18n) library for Flutter. It simplifies managing translations and supports dynamic parameter replacement, making multilingual apps easy to develop. 🚀
 
-## Features
+## Features 🛠️
 
-- Support for generic (`pt`) and specific (`pt_BR`) locales.
-- Dynamic parameter replacement (`@{name}`).
-- Fallback mechanism for missing translations.
-- Seamless integration with Flutter's localization framework.
+- 🌎 Support for generic (`pt`) and specific (`pt_BR`) locales.
+- 🔄 Dynamic parameter replacement (`@{name}`).
+- 🛡️ Fallback mechanism for missing translations.
+- 📦 Seamless integration with Flutter's localization framework.
 
-## Getting Started
+## Getting Started 🏁
 
-### Installation
+### Installation 📥
 
 Add EzI18n to your `pubspec.yaml`:
 
@@ -27,9 +27,12 @@ Run:
 flutter pub get
 ```
 
-### Usage
+### Observation 📝  
+For native Widget translation, you will need the `flutter_localizations` package to use the delegates, as shown in the example below.
 
-1. **Define translations:**
+### Usage 🚀
+
+1. **Define translations:** 🗂️
 
 ```dart
 import 'package:ezi18n/ezi18n.dart';
@@ -43,11 +46,12 @@ class AppMessages implements EzMessages {
 }
 ```
 
-2. **Set up localization in your app:**
+2. **Set up localization in your app:** ⚙️
 
 ```dart
 import 'package:ezi18n/ezi18n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -57,8 +61,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: Locale('en'),
       localizationsDelegates: [
         EzI18nDelegate(AppMessages()),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [Locale('en'), Locale('pt')],
       home: MyHomePage(),
@@ -67,7 +75,7 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-3. **Use translations:**
+3. **Use translations:** 📝
 
 ```dart
 import 'package:flutter/material.dart';
@@ -84,10 +92,10 @@ class MyHomePage extends StatelessWidget {
 }
 ```
 
-## Contributions
+## Contributions 🤝
 
-Contributions are welcome! Feel free to open issues or submit PRs on GitHub.
+Contributions are welcome! 🎉 Feel free to open issues or submit PRs on [GitHub](https://github.com).
 
-## License
+## License 📜
 
-EzI18n is available under the MIT license.
+EzI18n is available under the MIT license. 🛡️
