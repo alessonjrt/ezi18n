@@ -1,7 +1,7 @@
 name: ezi18n
 description: A simple internationalization package.
 version: 1.0.0
-
+homepage: https://github.com/alessonjrt/ezi18n
 environment:
   sdk: ">=2.17.0 <3.0.0"
 
