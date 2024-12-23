@@ -1,7 +1,7 @@
 name: example
 description: Exemplo de uso do seu_pacote.
 
-publish_to: "none" # Impede a publicação acidental do aplicativo de exemplo.
+publish_to: "none" 
 
 version: 1.0.0+1
 
